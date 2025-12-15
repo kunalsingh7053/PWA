@@ -148,67 +148,46 @@ function App() {
   const progressPercentage = Math.min((count / 1000) * 100, 100)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-red-950 to-orange-900 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 overflow-hidden">
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
       {/* Audio Element for Sound Effects */}
       <audio ref={audioRef}>
         <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAAB9AAACABAAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj==" type="audio/wav" />
       </audio>
 
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-0 w-72 h-72 bg-red-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-0 right-0 w-72 h-72 bg-orange-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-yellow-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse" style={{animationDelay: '2s'}}></div>
-      </div>
-
-      <div className="relative z-10 w-full max-w-2xl">
+      <div className="w-full max-w-4xl">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <div className="mb-6 space-y-2">
-            <p className="text-orange-400 text-sm font-semibold uppercase tracking-widest opacity-80">Professional Counter</p>
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-300 via-red-300 to-orange-200 tracking-tight">
-              Metallic Fox
-            </h1>
-            <p className="text-orange-200/80 text-base sm:text-lg font-light tracking-wide">
-              Advanced counting application with statistics
-            </p>
-          </div>
-          <div className="flex justify-center gap-2">
-            <div className="h-1 w-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></div>
-            <div className="h-1 w-8 bg-gradient-to-r from-red-500 to-orange-500 rounded-full opacity-50"></div>
-          </div>
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+            Counter App
+          </h1>
+          <p className="text-gray-600 text-sm sm:text-base">
+            Simple, powerful counting with undo/redo support
+          </p>
         </div>
 
         {/* Main Card */}
-        <div className="bg-gradient-to-b from-gray-900/90 to-gray-800/90 backdrop-blur-xl rounded-3xl shadow-2xl p-8 sm:p-10 md:p-12 mb-6 border border-orange-500/20 hover:border-orange-500/40 transition-all duration-500">
+        <div className="bg-white rounded-2xl shadow-lg p-8 sm:p-10 mb-8">
           
-          {/* Counter Display with Progress Bar */}
-          <div className="mb-12">
-            <div className={`relative bg-gradient-to-br from-orange-600 via-red-600 to-orange-700 rounded-3xl p-10 sm:p-12 md:p-16 transition-all duration-300 overflow-hidden group ${isAnimating ? 'scale-105 shadow-2xl' : 'shadow-xl'}`}>
-              {/* Shine Effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
-              
-              <div className="relative z-10 text-center">
-                <p className="text-gray-100 text-xs sm:text-sm font-bold mb-3 uppercase tracking-widest opacity-90 flex items-center justify-center gap-2">
-                  <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                  Current Count
-                  <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                </p>
-                <p className={`text-7xl sm:text-8xl md:text-9xl font-black text-white tabular-nums transition-all duration-300 drop-shadow-lg ${isAnimating ? 'scale-110' : 'scale-100'}`}>
-                  {count.toLocaleString()}
-                </p>
-              </div>
+          {/* Counter Display */}
+          <div className="mb-10">
+            <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-12 sm:p-16 text-center">
+              <p className="text-blue-100 text-sm font-medium mb-5 uppercase tracking-wide">
+                Current Count
+              </p>
+              <p className={`text-7xl sm:text-8xl md:text-9xl font-bold text-white tabular-nums transition-transform duration-200 ${isAnimating ? 'scale-105' : 'scale-100'}`}>
+                {count.toLocaleString()}
+              </p>
             </div>
 
             {/* Progress Bar */}
-            <div className="mt-6 space-y-2">
-              <div className="flex justify-between text-xs sm:text-sm font-medium">
-                <span className="text-gray-400">Progress to 1000</span>
-                <span className="text-orange-400">{Math.round(progressPercentage)}%</span>
+            <div className="mt-8 space-y-4">
+              <div className="flex justify-between text-sm font-medium">
+                <span className="text-gray-600">Progress to 1,000</span>
+                <span className="text-blue-600 font-semibold">{Math.round(progressPercentage)}%</span>
               </div>
-              <div className="w-full bg-gray-700/50 rounded-full h-3 overflow-hidden border border-orange-500/20">
+              <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
                 <div 
-                  className="bg-gradient-to-r from-orange-500 to-red-500 h-full transition-all duration-500 rounded-full shadow-lg" 
+                  className="bg-blue-600 h-full transition-all duration-500 rounded-full" 
                   style={{width: `${progressPercentage}%`}}
                 ></div>
               </div>
@@ -216,25 +195,23 @@ function App() {
           </div>
 
           {/* Control Buttons */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             {/* Main Actions Grid */}
-            <div className="grid grid-cols-3 gap-3 sm:gap-4">
+            <div className="grid grid-cols-3 gap-4">
               <button
                 onClick={decrement}
                 aria-label="Decrease count (↓)"
-                className="group relative bg-gradient-to-b from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-black py-5 sm:py-6 px-3 rounded-2xl transition-all duration-200 transform hover:scale-110 active:scale-95 text-3xl sm:text-4xl shadow-xl hover:shadow-red-500/50 border border-red-500/40 hover:border-red-500/70"
+                className="bg-red-600 hover:bg-red-700 text-white font-semibold py-6 px-4 rounded-xl transition-colors duration-200 active:scale-95 text-3xl shadow-md hover:shadow-lg"
               >
-                <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-15 rounded-2xl transition-opacity"></span>
                 −
               </button>
 
               <button
                 onClick={reset}
                 aria-label="Reset count (Ctrl+R)"
-                className="group relative bg-gradient-to-b from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 text-white font-bold py-5 sm:py-6 px-3 rounded-2xl transition-all duration-200 transform hover:scale-110 active:scale-95 text-sm sm:text-base shadow-xl hover:shadow-gray-600/50 border border-gray-600/40 hover:border-gray-600/70 flex items-center justify-center gap-1"
+                className="bg-gray-600 hover:bg-gray-700 text-white font-medium py-6 px-4 rounded-xl transition-colors duration-200 active:scale-95 text-sm shadow-md hover:shadow-lg flex items-center justify-center gap-2"
               >
-                <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-15 rounded-2xl transition-opacity"></span>
-                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 1119.414 9.414 1 1 0 11-1.414-1.414A5.002 5.002 0 005.659 5.109V4a1 1 0 011-1H4z" clipRule="evenodd" />
                 </svg>
                 Reset
@@ -243,23 +220,22 @@ function App() {
               <button
                 onClick={increment}
                 aria-label="Increase count (Space/↑)"
-                className="group relative bg-gradient-to-b from-orange-600 to-orange-700 hover:from-orange-500 hover:to-orange-600 text-white font-black py-5 sm:py-6 px-3 rounded-2xl transition-all duration-200 transform hover:scale-110 active:scale-95 text-3xl sm:text-4xl shadow-xl hover:shadow-orange-500/50 border border-orange-500/40 hover:border-orange-500/70"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-6 px-4 rounded-xl transition-colors duration-200 active:scale-95 text-3xl shadow-md hover:shadow-lg"
               >
-                <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-15 rounded-2xl transition-opacity"></span>
                 +
               </button>
             </div>
 
             {/* Secondary Actions Row */}
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            <div className="grid grid-cols-2 gap-4">
               <button
                 onClick={undo}
                 disabled={historyIndex <= 0}
                 aria-label="Undo"
-                className="group relative bg-gradient-to-b from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 disabled:from-gray-600 disabled:to-gray-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 sm:py-4 px-4 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-blue-500/50 border border-blue-500/40 hover:border-blue-500/70 flex items-center justify-center gap-2 text-sm sm:text-base"
+                className="bg-gray-700 hover:bg-gray-800 disabled:bg-gray-300 disabled:cursor-not-allowed text-white disabled:text-gray-500 font-medium py-4 px-4 rounded-xl transition-colors duration-200 active:scale-95 shadow-md flex items-center justify-center gap-2"
               >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M7.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 001.414 1.414L9.414 12.414l2.293 2.293a1 1 0 001.414-1.414l-4-4a1 1 0 00-1.414 0z" clipRule="evenodd" />
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
                 </svg>
                 Undo
               </button>
@@ -268,52 +244,50 @@ function App() {
                 onClick={redo}
                 disabled={historyIndex >= history.length - 1}
                 aria-label="Redo"
-                className="group relative bg-gradient-to-b from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 disabled:from-gray-600 disabled:to-gray-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 sm:py-4 px-4 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-green-500/50 border border-green-500/40 hover:border-green-500/70 flex items-center justify-center gap-2 text-sm sm:text-base"
+                className="bg-gray-700 hover:bg-gray-800 disabled:bg-gray-300 disabled:cursor-not-allowed text-white disabled:text-gray-500 font-medium py-4 px-4 rounded-xl transition-colors duration-200 active:scale-95 shadow-md flex items-center justify-center gap-2"
               >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
                 Redo
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
               </button>
             </div>
 
             {/* Sound Toggle & Install */}
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            <div className="grid grid-cols-2 gap-4">
               <button
                 onClick={() => setSoundEnabled(!soundEnabled)}
-                className={`group relative text-white font-semibold py-3 sm:py-4 px-4 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg border flex items-center justify-center gap-2 text-sm sm:text-base ${
+                className={`font-medium py-4 px-4 rounded-xl transition-colors duration-200 active:scale-95 shadow-md flex items-center justify-center gap-2 ${
                   soundEnabled 
-                    ? 'bg-gradient-to-b from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 hover:shadow-purple-500/50 border-purple-500/40 hover:border-purple-500/70' 
-                    : 'bg-gradient-to-b from-gray-600 to-gray-700 hover:from-gray-500 hover:to-gray-600 hover:shadow-gray-600/50 border-gray-500/40 hover:border-gray-500/70'
+                    ? 'bg-indigo-600 hover:bg-indigo-700 text-white' 
+                    : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
                 }`}
               >
                 {soundEnabled ? (
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9 4a1 1 0 012 0v12a1 1 0 11-2 0V4z" />
-                    <path d="M4 8a1 1 0 012 0v4a1 1 0 11-2 0V8z" />
-                    <path d="M14 7a1 1 0 012 0v6a1 1 0 11-2 0V7z" />
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clipRule="evenodd" />
                   </svg>
                 ) : (
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M13.414 5.414a2 2 0 00-2.828 0L9.172 7.172a2 2 0 101.414 1.414l1.414-1.414a2 2 0 002.828-2.828z" clipRule="evenodd" />
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
                 )}
-                Sound
+                Sound {soundEnabled ? 'On' : 'Off'}
               </button>
 
               {showInstallButton && !isInstalled ? (
                 <button
                   onClick={handleInstall}
-                  className="group relative bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-300 hover:to-yellow-400 text-gray-900 font-bold py-3 sm:py-4 px-4 rounded-xl transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-yellow-500/50 border border-yellow-300/50 hover:border-yellow-300/80 flex items-center justify-center gap-2 text-sm sm:text-base"
+                  className="bg-green-600 hover:bg-green-700 text-white font-medium py-4 px-4 rounded-xl transition-colors duration-200 active:scale-95 shadow-md flex items-center justify-center gap-2"
                 >
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
-                  Install
+                  Install App
                 </button>
               ) : isInstalled ? (
-                <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold py-3 sm:py-4 px-4 rounded-xl text-center text-sm sm:text-base shadow-lg border border-green-500/30 flex items-center justify-center gap-2">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <div className="bg-green-100 text-green-800 font-medium py-4 px-4 rounded-xl shadow-sm flex items-center justify-center gap-2">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                   Installed
@@ -324,42 +298,52 @@ function App() {
         </div>
 
         {/* Statistics Section */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6">
-          <div className="bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-sm rounded-2xl p-4 sm:p-5 border border-orange-500/20 hover:border-orange-500/40 transition-all duration-300 group hover:scale-105">
-            <p className="text-gray-500 text-xs sm:text-sm font-semibold uppercase tracking-wide mb-2">Current</p>
-            <p className="text-3xl sm:text-4xl font-black text-orange-400 group-hover:text-orange-300 transition-colors">{count}</p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+          <div className="bg-white rounded-xl p-5 shadow-md border border-gray-200">
+            <p className="text-gray-500 text-xs font-medium uppercase tracking-wide mb-2">Current</p>
+            <p className="text-3xl font-bold text-gray-900">{count}</p>
           </div>
 
-          <div className="bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-sm rounded-2xl p-4 sm:p-5 border border-red-500/20 hover:border-red-500/40 transition-all duration-300 group hover:scale-105">
-            <p className="text-gray-500 text-xs sm:text-sm font-semibold uppercase tracking-wide mb-2">Max Count</p>
-            <p className="text-3xl sm:text-4xl font-black text-red-400 group-hover:text-red-300 transition-colors">{stats.maxCount}</p>
+          <div className="bg-white rounded-xl p-5 shadow-md border border-gray-200">
+            <p className="text-gray-500 text-xs font-medium uppercase tracking-wide mb-2">Max Count</p>
+            <p className="text-3xl font-bold text-gray-900">{stats.maxCount}</p>
           </div>
 
-          <div className="bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-sm rounded-2xl p-4 sm:p-5 border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 group hover:scale-105">
-            <p className="text-gray-500 text-xs sm:text-sm font-semibold uppercase tracking-wide mb-2">Total Taps</p>
-            <p className="text-3xl sm:text-4xl font-black text-blue-400 group-hover:text-blue-300 transition-colors">{stats.totalTaps}</p>
+          <div className="bg-white rounded-xl p-5 shadow-md border border-gray-200">
+            <p className="text-gray-500 text-xs font-medium uppercase tracking-wide mb-2">Total Taps</p>
+            <p className="text-3xl font-bold text-gray-900">{stats.totalTaps}</p>
           </div>
 
-          <div className="bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-sm rounded-2xl p-4 sm:p-5 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 group hover:scale-105">
-            <p className="text-gray-500 text-xs sm:text-sm font-semibold uppercase tracking-wide mb-2">Sessions</p>
-            <p className="text-3xl sm:text-4xl font-black text-purple-400 group-hover:text-purple-300 transition-colors">{stats.sessions}</p>
+          <div className="bg-white rounded-xl p-5 shadow-md border border-gray-200">
+            <p className="text-gray-500 text-xs font-medium uppercase tracking-wide mb-2">Sessions</p>
+            <p className="text-3xl font-bold text-gray-900">{stats.sessions}</p>
           </div>
         </div>
 
         {/* Footer Info */}
-        <div className="text-center space-y-2">
-          <p className="text-orange-200 text-sm sm:text-base font-medium">
-            🦊 Professional Metallic Fox Counter
-          </p>
-          <p className="text-xs sm:text-sm text-orange-300/70 flex items-center justify-center gap-2 flex-wrap">
-            <span>💾 Auto-save</span>
-            <span>•</span>
-            <span>⌨️ Keyboard shortcuts</span>
-            <span>•</span>
-            <span>📊 Statistics tracking</span>
-          </p>
-          <p className="text-xs text-gray-500 mt-3">
-            Space/↑ to increment • ↓ to decrement • Ctrl+R to reset
+        <div className="text-center space-y-3">
+          <div className="flex items-center justify-center gap-4 text-xs text-gray-600">
+            <span className="flex items-center gap-1">
+              <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M7.707 10.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V6h5a2 2 0 012 2v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h5v5.586l-1.293-1.293zM9 4a1 1 0 012 0v2H9V4z"/>
+              </svg>
+              Auto-save
+            </span>
+            <span className="flex items-center gap-1">
+              <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"/>
+              </svg>
+              Statistics
+            </span>
+            <span className="flex items-center gap-1">
+              <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+              </svg>
+              PWA Ready
+            </span>
+          </div>
+          <p className="text-xs text-gray-500">
+            <kbd className="px-2 py-1 bg-gray-200 rounded text-gray-700 font-mono">Space</kbd> or <kbd className="px-2 py-1 bg-gray-200 rounded text-gray-700 font-mono">↑</kbd> to increment • <kbd className="px-2 py-1 bg-gray-200 rounded text-gray-700 font-mono">↓</kbd> to decrement • <kbd className="px-2 py-1 bg-gray-200 rounded text-gray-700 font-mono">Ctrl+R</kbd> to reset
           </p>
         </div>
       </div>
